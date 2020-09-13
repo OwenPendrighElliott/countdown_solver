@@ -17,15 +17,15 @@ class letters_game():
         print(f"There are {len(self.words)} words in the dictionary")
 
     def solve(self):
-        i = 9
-        while i > 1:
+        # for every length get all permutations of the input string and check if they are words
+        for i in range(9, 1, -1):
             wrds = permutations(self.letters, i)
             for wrd in wrds:
                 if wrd in self.words:
                     print(f"A word of length {len(wrd)} was found")
                     return ''.join(c for c in wrd)
-            i -= 1
-   
+
+# run file directly if wanted
 def main():
     letters = sys.argv[1].lower()
     if len(sys.argv)>2:

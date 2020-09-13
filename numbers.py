@@ -1,6 +1,6 @@
 import sys
 from collections import deque
-from itertools import permutations
+from itertools import combinations
 
 class numbers_game():
     def __init__(self, goal, nums, shortest=False):
@@ -20,10 +20,8 @@ class numbers_game():
     
     # div can not return negative or float numbers
     def divide(self, a,b):
-        if a == 0 or b == 0 or b>a:
-            return 0 
-        if a%b != 0:
-            return 0
+        if a == 0 or b == 0 or a%b != 0:
+            raise ValueError("Invalid division for Countdown")
         return int(a/b)
     
     def solve(self):
@@ -33,16 +31,28 @@ class numbers_game():
         nodes = 0
         while Q:
             ns, path = Q.pop()
+
+            # check goal
             if self.goal in ns:
                 print(f"Solution found after expanding {nodes} nodes")
                 return path
+            
+            # if only one number is left then this path has failed
             if len(ns) <= 1:
                 continue
-            for a, b in permutations(ns, 2):
+
+            for a, b in combinations(ns, 2):
+                # enforce largest first to allow for combinations instead of permutations
+                if b > a:
+                    a, b = b, a
                 for op in self.ops:
                     nodes += 1
                     # calulate new value 
-                    new_n = op(a, b)
+                    try:
+                        new_n = op(a, b)
+                    except ValueError:
+                        continue
+                    
                     # if value is negative then we dont need it
                     if new_n < 0:
                         continue
@@ -54,15 +64,15 @@ class numbers_game():
                     new_ns.append(new_n)
                     new_path = list(path)
                     new_path.append((a, op.__name__, b, new_n))
-                    # if shortest use LIFO (BFS)
+                    # if shortest use FIFO (BFS)
                     if self.shortest:
                         Q.appendleft((new_ns, new_path))
-                    # else use FIFO (DFS)
+                    # else use LIFO (DFS)
                     else:
                         Q.append((new_ns, new_path))
         raise Exception("No Solution available!")
 
-
+# run file directly if wanted
 def main():
     ns_str = sys.argv[1]
     nums = [int(n) for n in ns_str.split('-')]
