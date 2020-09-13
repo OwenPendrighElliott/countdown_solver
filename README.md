@@ -13,6 +13,6 @@ A simple program to solve problems on Countdown (or Letters and Numbers for fell
 
 #### Each file can also be ran individually with:
 + `python3 numbers.py 50-100-9-1-9-3 727` (for DFS)
-+ `python3 numbers.py 50-100-9-1-9-3 727` (for BFS)
++ `python3 numbers.py 50-100-9-1-9-3 727 True` (for BFS)
 
 + `python3 letters.py faintcase`
