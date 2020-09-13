@@ -2,6 +2,11 @@
 
 A simple program to solve problems on Countdown.
 
-Currently includes:
-+ BFS and DFS searches for numbers solutions
-+ A letters solver to find the longest word (doubles as conundrum solver)
+Example commands to run:
+
+### Numbers game with DFS
+`python letters_and_numbers.py -g numbers -ns 8-5-7-100-25-50 -t 516`
+### Numbers game with BFS
+`python letters_and_numbers.py -g numbers -ns 8-5-7-100-25-50 -t 516 -st True`
+### Letters game or conundrum
+`python letters_and_numbers.py -g letters -l faintcase`
