@@ -4,11 +4,11 @@ A simple program to solve problems on Countdown (or Letters and Numbers for fell
 
 ## Example usage:
 
-### Numbers game with DFS
+Numbers game with DFS
 `python3 letters_and_numbers.py -g numbers -ns 8-5-7-100-25-50 -t 516`
-### Numbers game with BFS
+Numbers game with BFS
 `python3 letters_and_numbers.py -g numbers -ns 8-5-7-100-25-50 -t 516 -st True`
-### Letters game or conundrum
+letters game or conundrum
 `python3 letters_and_numbers.py -g letters -l faintcase`
 
 Each file can also be ran individually with:
