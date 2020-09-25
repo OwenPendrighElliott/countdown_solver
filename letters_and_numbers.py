@@ -29,8 +29,8 @@ parser.add_argument('-t',
                     help='The target number for a numbers game',
                     type=int)
 
-parser.add_argument('-st',
-                    help='Solve type for the numbers solver (True for BFS False for DFS)',
+parser.add_argument('-ts',
+                    help='Whether or not to do a trickshot for numbers',
                     type=bool,
                     default=False)
 
@@ -41,14 +41,14 @@ ls = arguments.ls
 ws = arguments.ws
 ns = arguments.ns
 g = arguments.t
-st = arguments.st
+ts = arguments.ts
 
 if game == 'letters':
     ls = ls.lower()
     countdown_game = letters.letters_game(ls, ws)
 else:
     nums = [int(n) for n in ns.split('-')]
-    countdown_game = numbers.numbers_game(g, nums, st)
+    countdown_game = numbers.numbers_game(g, nums, ts)
 
 solution = countdown_game.solve()
 
